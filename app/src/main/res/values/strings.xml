@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="LogInTitle">Log In</string>
+    <string name="LogInTitle">LOG IN</string>
     <string name="PhoneText">CellPhone</string>
     <string name="PasswordText">Password</string>
     <string name="SignInButton">Sign In</string>
