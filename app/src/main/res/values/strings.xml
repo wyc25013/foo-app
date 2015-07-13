@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="LogInTitle">Log In</string>
+    <string name="PhoneText">CellPhone</string>
+    <string name="PasswordText">Password</string>
+    <string name="SignInButton">Sign In</string>
+    <string name="NoAccountNotice">No Account?</string>
+    <string name="SignUpButton">SIGN UP</string>
+    <string name="OrNotice">Or</string>
+    <string name="AsGuestButton">As Guest</string>
+</resources>
