@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 
 public class MyActivity extends ActionBarActivity {
@@ -34,19 +35,19 @@ public class MyActivity extends ActionBarActivity {
         );
 
         signIn.setOnLongClickListener(
-                new Button.OnLongClickListener() {
-                    public boolean onLongClick(View v) {
-                        TextView logIn = (TextView) findViewById(R.id.log_in);
-                        logIn.setText("so long!");
-                        return true;
-                    }
+            new Button.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    TextView logIn = (TextView) findViewById(R.id.log_in);
+                    logIn.setText("so long!");
+                    return true;
                 }
+            }
         );
 
         signUp.setOnClickListener(
             new Button.OnClickListener() {
                 public void onClick(View v) {
-                    // to do
+                    sendOutBroadcast(v);
                 }
             }
         );
@@ -58,6 +59,13 @@ public class MyActivity extends ActionBarActivity {
                 }
             }
         );
+    }
+
+    public void sendOutBroadcast(View view){
+        Intent i = new Intent();
+        i.setAction("com.example.wangyicheng.myapplication");
+        i.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        sendBroadcast(i);
     }
 
     @Override
