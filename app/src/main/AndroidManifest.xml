@@ -10,6 +10,27 @@
         <activity
             android:name=".MyActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".LogIn_1st"
+            android:label="@string/title_activity_log_in_1st" >
+
+        </activity>
+        <activity
+            android:name=".patient_log_in"
+            android:label="@string/title_activity_patient_log_in" >
+        </activity>
+        <activity
+            android:name=".guest_log_in"
+            android:label="@string/title_activity_guest_log_in" >
+        </activity>
+        <activity
+            android:name=".dentist_log_in"
+            android:label="@string/title_activity_dentist_log_in" >
+        </activity>
+        <activity
+            android:name=".dentistList"
+            android:label="@string/title_activity_dentist_list" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,4 +11,9 @@
     <string name="SignUpButton">SIGN UP</string>
     <string name="OrNotice">Or</string>
     <string name="AsGuestButton">As Guest</string>
+    <string name="title_activity_log_in_1st">LogIn_1st</string>
+    <string name="title_activity_patient_log_in">patient_log_in</string>
+    <string name="title_activity_guest_log_in">guest_log_in</string>
+    <string name="title_activity_dentist_log_in">dentist_log_in</string>
+    <string name="title_activity_dentist_list">dentistList</string>
 </resources>
