@@ -16,4 +16,5 @@
     <string name="title_activity_guest_log_in">guest_log_in</string>
     <string name="title_activity_dentist_log_in">dentist_log_in</string>
     <string name="title_activity_dentist_list">dentistList</string>
+    <string name="title_activity_communicate_with_server">CommunicateWithServer</string>
 </resources>
