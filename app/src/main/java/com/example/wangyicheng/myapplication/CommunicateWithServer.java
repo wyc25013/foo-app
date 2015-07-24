@@ -21,7 +21,7 @@ public class CommunicateWithServer extends ActionBarActivity {
         @Override
         protected String doInBackground(String... str) {
             try {
-                String get_url = "http://10.109.9.42:3001/recieve?q=" + str[0].replace(" ", "%20");
+                String get_url = "http://localhost/androidAppServer/recieve?q=" + str[0].replace(" ", "%20");
                 HttpClient Client = new DefaultHttpClient();
                 HttpGet httpget;
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
