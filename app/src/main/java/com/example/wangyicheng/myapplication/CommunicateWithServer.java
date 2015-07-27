@@ -3,6 +3,7 @@ package com.example.wangyicheng.myapplication;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,20 +19,25 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class CommunicateWithServer extends ActionBarActivity {
 
     private class HttpSend extends AsyncTask<String, Void, String> {
+
         @Override
         protected String doInBackground(String... str) {
+            String get_url = "http://35.0.46.167:80/androidAppServer/appserver.php?q=" + str[0].replace(" ", "%20");
             try {
-                String get_url = "http://localhost/androidAppServer/receive?q=" + str[0].replace(" ", "%20");
+            //    Log.i("debug_yich", "h1");
                 HttpClient Client = new DefaultHttpClient();
-                HttpGet httpget;
+            //    Log.i("debug_yich", "h2");
+                HttpGet httpget = new HttpGet(get_url);
+            //    Log.i("debug_yich", "h3");
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
-                httpget = new HttpGet(get_url);
+            //    Log.i("debug_yich", "h4");
                 String content = Client.execute(httpget, responseHandler);
+                Log.i("debug_yich", content);
                 return content;
             } catch(Exception e) {
                 System.out.println(e);
             }
-            return "Cannot Connect";
+            return "Cannot Connect to: " + get_url;
         }
 
         protected void onPostExecute(String result) {
