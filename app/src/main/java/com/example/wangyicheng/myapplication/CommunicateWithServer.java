@@ -22,7 +22,8 @@ public class CommunicateWithServer extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... str) {
-            String get_url = "http://35.0.46.167:80/androidAppServer/appserver.php?q=" + str[0].replace(" ", "%20");
+            // from avd, you can always access local machine with 10.0.2.2
+            String get_url = "http://10.0.2.2:80/androidAppServer/appserver.php?q=" + str[0].replace(" ", "%20");
             try {
             //    Log.i("debug_yich", "h1");
                 HttpClient Client = new DefaultHttpClient();
