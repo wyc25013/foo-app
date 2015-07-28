@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/account"
         android:layout_below="@+id/textView9"
         android:layout_alignLeft="@+id/textView10"
         android:layout_alignStart="@+id/textView10" />
@@ -57,8 +57,8 @@
         android:id="@+id/textView9"
         android:textColor="#ffffff"
         android:layout_below="@+id/textView8"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
+        android:layout_alignLeft="@+id/account"
+        android:layout_alignStart="@+id/account"
         android:layout_marginTop="51dp" />
 
     <Button

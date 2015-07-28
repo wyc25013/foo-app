@@ -41,6 +41,7 @@ public class CommunicateWithServer extends ActionBarActivity {
             return "Cannot Connect to: " + get_url;
         }
 
+        @Override
         protected void onPostExecute(String result) {
             TextView tv = (TextView) findViewById(R.id.show_text);
             tv.setText(result);
