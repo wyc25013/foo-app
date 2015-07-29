@@ -15,6 +15,11 @@ public class guest_log_in extends ActionBarActivity {
         startActivity(i);
     }
 
+    public void SignUp(View view){
+        Intent i = new Intent(this,Sign_up.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
