@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 29, 2015 at 05:30 AM
+-- Generation Time: Jul 29, 2015 at 05:36 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `userInfo` (
 --
 
 INSERT INTO `userInfo` (`email`, `password`, `first name`, `last name`) VALUES
-('yichwang@umich.edu', 'Fendou2013', 'Yicheng', 'Wang');
+('yichwang@umich.edu', 'dummyPass', 'Yicheng', 'Wang');
 
 --
 -- Indexes for dumped tables
