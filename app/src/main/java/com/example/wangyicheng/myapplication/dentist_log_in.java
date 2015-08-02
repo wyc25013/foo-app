@@ -44,7 +44,7 @@ public class dentist_log_in extends ActionBarActivity {
             @Override
             protected String doInBackground(String... str) {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/appserver.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/dentistLogin.php");
                 String Acct = str[0]; String Pwd = str[1];
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("postAcct", Acct));
@@ -76,8 +76,10 @@ public class dentist_log_in extends ActionBarActivity {
                 super.onPostExecute(result);
                 if(result.equals("working")){
                     Toast.makeText(getApplicationContext(), "HTTP POST is working...", Toast.LENGTH_LONG).show();
+                    logInSucceed(acct);
                 }else{
                     Toast.makeText(getApplicationContext(), "Invalid POST req...", Toast.LENGTH_LONG).show();
+                    loginInFail();
                 }
             }
         }
@@ -92,6 +94,21 @@ public class dentist_log_in extends ActionBarActivity {
         String strpwd = send_txt_pswd.getText().toString();
         Log.i("debug_yich", stracct+strpwd);
         sendPostRequest(stracct, strpwd);
+    }
+
+    private void logInSucceed(String denAcct){
+        switch (denAcct){
+            case "Zhenming Wang":
+                Intent i = new Intent(this, dentistList.class);
+                startActivity(i);
+                break;
+            // other cases
+        }
+    }
+
+    private void loginInFail(){
+        Intent i = new Intent(this, logInFail.class);
+        startActivity(i);
     }
 
     @Override

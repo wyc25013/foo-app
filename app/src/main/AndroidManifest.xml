@@ -51,6 +51,10 @@
             android:name=".sign_up_fail"
             android:label="@string/title_activity_sign_up_fail" >
         </activity>
+        <activity
+            android:name=".logInFail"
+            android:label="@string/title_activity_log_in_fail" >
+        </activity>
     </application>
 
 </manifest>
