@@ -47,6 +47,10 @@
             android:name=".Sign_up"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name=".sign_up_fail"
+            android:label="@string/title_activity_sign_up_fail" >
+        </activity>
     </application>
 
 </manifest>

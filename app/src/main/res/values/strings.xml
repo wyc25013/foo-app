@@ -18,4 +18,5 @@
     <string name="title_activity_dentist_list">dentistList</string>
     <string name="title_activity_communicate_with_server">CommunicateWithServer</string>
     <string name="title_activity_sign_up">Sign_up</string>
+    <string name="title_activity_sign_up_fail">sign_up_fail</string>
 </resources>

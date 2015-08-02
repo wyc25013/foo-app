@@ -1,6 +1,8 @@
 package com.example.wangyicheng.myapplication;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.ConditionVariable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,11 +27,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
 
 
 public class Sign_up extends ActionBarActivity {
 
-    private void sendPostRequest(String acct, String pwd, String fn, String ln){
+//    boolean isSignUpDone = false;
+    boolean isSignUpSuccess = false;
+    Lock l;
+    ConditionVariable cv = new ConditionVariable(false);
+
+    private void sendPostRequest(String acct, String pwd, final String fn, final String ln){
+        final StringBuilder retBuilder = new StringBuilder();
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
@@ -43,7 +52,7 @@ public class Sign_up extends ActionBarActivity {
                 nameValuePairs.add(new BasicNameValuePair("postFn", Fn));
                 nameValuePairs.add(new BasicNameValuePair("postLn", Ln));
 
-                Log.i("debug_yich", Acct + Pwd);
+            //    Log.i("debug_yich", Acct + Pwd);
                 try {
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
@@ -54,6 +63,9 @@ public class Sign_up extends ActionBarActivity {
                     String bufferedStrChunk = null;
                     while((bufferedStrChunk = bufferedReader.readLine()) != null)
                         stringBuilder.append(bufferedStrChunk);
+
+                //    Log.i("debug_yich", stringBuilder.toString());
+                //    retBuilder.append(stringBuilder.toString());
                     return stringBuilder.toString();
                 } catch (ClientProtocolException e) {
                     System.out.println(e);
@@ -66,11 +78,21 @@ public class Sign_up extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(String result) {
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            //    Log.i("debug_yich", result);
+                retBuilder.append(result);
+            //    Log.i("debug_yich", retBuilder.toString());
+                Toast.makeText(getApplicationContext(), result+fn+" "+ln, Toast.LENGTH_LONG).show();
+
+                isSignUpSuccess =  retBuilder.toString().equals("sign up success! Welcome ");
+                l.lock();
+            //    isSignUpDone = true;
+                cv.notify();
+                l.unlock();
             }
         }
         HttpSend httpsd = new HttpSend();
         httpsd.execute(acct, pwd, fn, ln);
+        Log.i("debug_yich", retBuilder.toString());
     }
 
     public void submit(View v) {
@@ -82,8 +104,23 @@ public class Sign_up extends ActionBarActivity {
         String strpwd = send_txt_pswd.getText().toString();
         String strfn = send_txt_fn.getText().toString();
         String strln = send_txt_ln.getText().toString();
-        Log.i("debug_yich", stracct+strpwd);
         sendPostRequest(stracct, strpwd, strfn, strln);
+    //    Log.i("debug_yich", stracct+strpwd);
+        l.lock();
+        while(!cv.equals(true)){
+    //        Toast.makeText(getApplicationContext(), "Signing up, please wait", Toast.LENGTH_LONG).show();
+            cv.block();
+        }
+        l.unlock();
+
+        //    Log.i("debug_yich", ret);
+        if(isSignUpSuccess){
+            Intent i = new Intent(this, dentistList.class);
+            startActivity(i);
+        }else{
+            Intent i = new Intent(this, sign_up_fail.class);
+            startActivity(i);
+        }
     }
 
     @Override
