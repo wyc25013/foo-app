@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 29, 2015 at 05:36 AM
+-- Generation Time: Aug 02, 2015 at 08:41 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -23,6 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dentInfo`
+--
+
+CREATE TABLE IF NOT EXISTS `dentInfo` (
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `firstname` varchar(20) NOT NULL,
+  `lastname` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='dentists'' information';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `userInfo`
 --
 
@@ -38,11 +51,38 @@ CREATE TABLE IF NOT EXISTS `userInfo` (
 --
 
 INSERT INTO `userInfo` (`email`, `password`, `first name`, `last name`) VALUES
-('yichwang@umich.edu', 'dummyPass', 'Yicheng', 'Wang');
+('Chengyu@umich.edu', 'dummy', 'Chengyu', 'Dai'),
+('collinli@umich.edu', 'dummy', 'Guanlin', 'Li'),
+('gcbo@umich.edu', 'dummy', 'Bo', 'Zhang'),
+('haodong@umich.edu', 'dummy', 'Haodong', 'Shen'),
+('haotianw@umich.edu', 'dummy', 'Haotian', 'Wang'),
+('Honeyman@umich.edu', 'dummy', 'Peter', 'Honeyman'),
+('huilq@umich.edu', 'dummy', 'huiling', 'qiao'),
+('jflinn@umich.edu', 'dummy', 'Jason', 'Flinn'),
+('Kevin@umich.edu', 'dummy', 'Kaiwen', 'Guo'),
+('luzheng@austin.edu', 'adobe', 'Lu', 'Zheng'),
+('menshuang@umich.edu', 'dummy', 'shuang', 'men'),
+('Siyun@umich.edu', 'dummy', 'siyun', 'chen'),
+('smllle@umich.edu', 'dummy', 'Xiaowen', 'Zhao'),
+('Tongli@umich.edu', 'dummy', 'tong', 'li'),
+('wyc25013@gmail.com', 'dummyPass', 'Uchen', 'Wong'),
+('Xiaoqiang@ucla.edu', 'dummy', 'Xiaoqiang', 'Lee'),
+('XiaoranD@umich.edu', 'dummy', 'Xiaoran', 'Dong'),
+('yichwang@umich.edu', 'dummyPass', 'Yicheng', 'Wang'),
+('yunboliu@umich.edu', 'dummy', 'Yunbo', 'Liu'),
+('yuzhou@umich.edu', 'dummy', 'Yuzhou', 'Li'),
+('Zheli@umich.edu', 'dummy', 'zhe', 'li'),
+('ZhenXu@umich.edu', 'dummy', 'Zhen', 'Xu');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `dentInfo`
+--
+ALTER TABLE `dentInfo`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `userInfo`

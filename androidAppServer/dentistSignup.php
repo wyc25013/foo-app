@@ -6,9 +6,9 @@ $password = $_POST['postPwd'];
 $firstname = $_POST['postFn'];
 $lastname = $_POST['postLn'];
 
-$query = "INSERT INTO userInfo VALUES ('$account', '$password', '$firstname', '$lastname');";
+$query = "INSERT INTO dentInfo VALUES ('$account', '$password', '$firstname', '$lastname');";
 if($query_run = mysql_query($query)){
-	echo "sign up success! Welcome ".$firstname." ".$lastname;
+	echo "sign up success! Welcome ";
 }
 
 ?>
