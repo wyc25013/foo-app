@@ -39,7 +39,7 @@ public class dentist_log_in extends ActionBarActivity {
         startActivity(i);
     }
 
-    private void sendPostRequest(String acct, String pwd){
+    private void sendPostRequest(final String acct, String pwd){
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
@@ -98,7 +98,7 @@ public class dentist_log_in extends ActionBarActivity {
 
     private void logInSucceed(String denAcct){
         switch (denAcct){
-            case "Zhenming Wang":
+            case "ZhenmingWang@kangjie.com":
                 Intent i = new Intent(this, dentistList.class);
                 startActivity(i);
                 break;

@@ -107,9 +107,35 @@
         android:layout_height="wrap_content"
         android:text="submit"
         android:id="@+id/button9"
+        android:layout_marginBottom="43dp"
+        android:onClick="submit"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp"
-        android:onClick="submit" />
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView17"
+        android:layout_alignRight="@+id/login_ln"
+        android:layout_alignEnd="@+id/login_ln">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign up as a dentist"
+            android:id="@+id/radioButton"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:onClick="selectId" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign up as a patient"
+            android:id="@+id/radioButton2"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:onClick="selectId" />
+    </RadioGroup>
 
 </RelativeLayout>

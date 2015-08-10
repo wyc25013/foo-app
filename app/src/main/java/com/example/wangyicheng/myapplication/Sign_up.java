@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -34,23 +35,29 @@ public class Sign_up extends ActionBarActivity {
 
 //    boolean isSignUpDone = false;
     boolean isSignUpSuccess = false;
+    boolean dOrP = false;
 //    Lock l;
 //    ConditionVariable cv = new ConditionVariable(false);
 
-    private void sendPostRequest(String acct, String pwd, final String fn, final String ln){
+    private void sendPostRequest(final String acct, final String pwd, final String fn, final String ln){
         final StringBuilder retBuilder = new StringBuilder();
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/signup.php");
-                String Acct = str[0]; String Pwd = str[1];
-                String Fn = str[2]; String Ln = str[3];
+                HttpPost httppost;
+            //    Log.i("debug_yich", dOrP+"");
+                if(dOrP == true)
+                    httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/dentistSignup.php");
+                else
+                    httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/patientSignup.php");
+            //    String Acct = str[0]; String Pwd = str[1];
+            //    String Fn = str[2]; String Ln = str[3];
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("postAcct", Acct));
-                nameValuePairs.add(new BasicNameValuePair("postPwd", Pwd));
-                nameValuePairs.add(new BasicNameValuePair("postFn", Fn));
-                nameValuePairs.add(new BasicNameValuePair("postLn", Ln));
+                nameValuePairs.add(new BasicNameValuePair("postAcct", acct));
+                nameValuePairs.add(new BasicNameValuePair("postPwd", pwd));
+                nameValuePairs.add(new BasicNameValuePair("postFn", fn));
+                nameValuePairs.add(new BasicNameValuePair("postLn", ln));
 
                 try {
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -116,6 +123,22 @@ public class Sign_up extends ActionBarActivity {
     //    l.unlock();
 
         //    Log.i("debug_yich", ret);
+    }
+
+    public void selectId(View v){
+        boolean checked = ((RadioButton) v).isChecked();
+        switch(v.getId()) {
+            case R.id.radioButton:
+                if (checked)
+                    // dentist
+                    dOrP = true;
+                    break;
+            case R.id.radioButton2:
+                if (checked)
+                    // patient
+                    dOrP = false;
+                    break;
+        }
     }
 
     private void signUpSucceed(){
