@@ -1,5 +1,6 @@
 package com.example.wangyicheng.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,7 +25,7 @@ public class dentistList extends ActionBarActivity {
 
         ListAdapter denListAdapter = new CustomRow(this, dentists);
     //    ListAdapter denListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dentists);
-        ListView denList = (ListView) findViewById(R.id.denListView);
+        final ListView denList = (ListView) findViewById(R.id.denListView);
         denList.setAdapter(denListAdapter);
 
         denList.setOnItemClickListener(
@@ -32,9 +33,21 @@ public class dentistList extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String dentist = String.valueOf(parent.getItemAtPosition(position));
-                    Toast.makeText(dentistList.this, dentist, Toast.LENGTH_LONG).show();
+                //    Toast.makeText(dentistList.this, dentist, Toast.LENGTH_LONG).show();
+                    goToPage(dentist);
                 }
             }
         );
+    }
+
+    public void goToPage(String s){
+        Intent i;
+        switch (s){
+            case "Zhengming Wang":
+                i = new Intent(this, wzmPage.class);
+                startActivity(i);
+                break;
+            // other cases;
+        }
     }
 }

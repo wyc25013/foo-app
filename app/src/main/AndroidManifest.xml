@@ -55,6 +55,10 @@
             android:name=".logInFail"
             android:label="@string/title_activity_log_in_fail" >
         </activity>
+        <activity
+            android:name=".wzmPage"
+            android:label="@string/title_activity_wzm_page" >
+        </activity>
     </application>
 
 </manifest>

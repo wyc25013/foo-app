@@ -20,4 +20,5 @@
     <string name="title_activity_sign_up">Sign_up</string>
     <string name="title_activity_sign_up_fail">sign_up_fail</string>
     <string name="title_activity_log_in_fail">logInFail</string>
+    <string name="title_activity_wzm_page">wzmPage</string>
 </resources>

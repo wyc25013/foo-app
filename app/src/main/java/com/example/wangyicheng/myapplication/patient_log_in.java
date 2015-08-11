@@ -96,8 +96,8 @@ public class patient_log_in extends ActionBarActivity {
 
 
     public void logInPatient(View v) {
-        EditText send_txt_acct = (EditText) findViewById(R.id.email);
-        EditText send_txt_pswd = (EditText) findViewById(R.id.pswd);
+        EditText send_txt_acct = (EditText) findViewById(R.id.account);
+        EditText send_txt_pswd = (EditText) findViewById(R.id.password);
         String stracct = send_txt_acct.getText().toString();
         String strpwd = send_txt_pswd.getText().toString();
         Log.i("debug_yich", stracct+strpwd);
