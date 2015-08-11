@@ -8,24 +8,23 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class wzmPage extends ActionBarActivity {
+public class PwzmPage extends ActionBarActivity {
 
-    public void GoBack(View v){
+    public void goBack(View v){
         Intent i = new Intent(this, dentistList.class);
         startActivity(i);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wzm_page);
+        setContentView(R.layout.activity_pwzm_page);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_wzm_page, menu);
+        getMenuInflater().inflate(R.menu.menu_pwzm_page, menu);
         return true;
     }
 

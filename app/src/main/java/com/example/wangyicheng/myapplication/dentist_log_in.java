@@ -99,7 +99,7 @@ public class dentist_log_in extends ActionBarActivity {
     private void logInSucceed(String denAcct){
         switch (denAcct){
             case "ZhenmingWang@kangjie.com":
-                Intent i = new Intent(this, wzmPage.class);
+                Intent i = new Intent(this, DwzmPage.class);
                 startActivity(i);
                 break;
             // other cases

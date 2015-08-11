@@ -90,9 +90,9 @@ public class Sign_up extends ActionBarActivity {
                 isSignUpSuccess =  retBuilder.toString().equals("sign up success! Welcome ");
                 if(isSignUpSuccess){
                     if(dOrP == true)
-                        signUpSucceed(acct);
+                        DsignUpSucceed();
                     else
-                        signUpSucceed();
+                        PsignUpSucceed();
                 }else{
                     signUpFail();
                 }
@@ -144,13 +144,15 @@ public class Sign_up extends ActionBarActivity {
         }
     }
 
-    private void signUpSucceed(){
-        Intent i = new Intent(this, dentistList.class);
+    private void PsignUpSucceed(){
+        Intent i = new Intent(this, patient_log_in.class);
         startActivity(i);
     }
 
-    private void signUpSucceed(String s){
-        Intent i;
+    private void DsignUpSucceed(){
+        Intent i = new Intent(this, dentist_log_in.class);
+        startActivity(i);
+        /*
         switch (s) {
             case "ZhenmingWang@kangjie.com":
                 i = new Intent(this, wzmPage.class);
@@ -158,6 +160,7 @@ public class Sign_up extends ActionBarActivity {
                 break;
             // other cases
         }
+        */
     }
 
     private void signUpFail(){

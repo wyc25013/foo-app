@@ -59,6 +59,10 @@
             android:name=".wzmPage"
             android:label="@string/title_activity_wzm_page" >
         </activity>
+        <activity
+            android:name=".PwzmPage"
+            android:label="@string/title_activity_pwzm_page" >
+        </activity>
     </application>
 
 </manifest>

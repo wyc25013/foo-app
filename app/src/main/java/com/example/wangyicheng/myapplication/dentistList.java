@@ -44,7 +44,7 @@ public class dentistList extends ActionBarActivity {
         Intent i;
         switch (s){
             case "Zhengming Wang":
-                i = new Intent(this, wzmPage.class);
+                i = new Intent(this, PwzmPage.class);
                 startActivity(i);
                 break;
             // other cases;
