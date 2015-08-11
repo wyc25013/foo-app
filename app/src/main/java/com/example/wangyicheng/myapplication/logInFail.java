@@ -5,11 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class logInFail extends ActionBarActivity {
 
-    public void goBackToLogIn(){
+    public void goBackToLogIn(View v){
         Intent i = new Intent(this, patient_log_in.class);
         startActivity(i);
     }

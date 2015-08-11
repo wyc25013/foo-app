@@ -107,17 +107,17 @@
         android:layout_height="wrap_content"
         android:text="submit"
         android:id="@+id/button9"
-        android:layout_marginBottom="43dp"
         android:onClick="submit"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/rg"
+        android:layout_toLeftOf="@+id/button15"
+        android:layout_toStartOf="@+id/button15" />
 
     <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:id="@+id/rg"
         android:layout_below="@+id/textView17"
-        android:layout_alignRight="@+id/login_ln"
-        android:layout_alignEnd="@+id/login_ln">
+        android:layout_centerHorizontal="true">
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -136,6 +136,17 @@
             android:layout_gravity="center_horizontal"
             android:checked="false"
             android:onClick="selectId" />
+
     </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go back"
+        android:id="@+id/button15"
+        android:onClick="GoBack"
+        android:layout_below="@+id/rg"
+        android:layout_alignRight="@+id/rg"
+        android:layout_alignEnd="@+id/rg" />
 
 </RelativeLayout>

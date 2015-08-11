@@ -11,12 +11,17 @@ import android.view.View;
 public class guest_log_in extends ActionBarActivity {
 
     public void GoBack(View view){
-        Intent i = new Intent(this,LogIn_1st.class);
+        Intent i = new Intent(this, LogIn_1st.class);
         startActivity(i);
     }
 
     public void SignUp(View view){
-        Intent i = new Intent(this,Sign_up.class);
+        Intent i = new Intent(this, Sign_up.class);
+        startActivity(i);
+    }
+
+    public void AsGuest(View v){
+        Intent i = new Intent(this, dentistList.class);
         startActivity(i);
     }
 

@@ -116,7 +116,11 @@ public class Sign_up extends ActionBarActivity {
         String strpwd = send_txt_pswd.getText().toString();
         String strfn = send_txt_fn.getText().toString();
         String strln = send_txt_ln.getText().toString();
-        sendPostRequest(stracct, strpwd, strfn, strln);
+        if(!stracct.isEmpty() && !strpwd.isEmpty() && !strfn.isEmpty() && !strln.isEmpty()) {
+            sendPostRequest(stracct, strpwd, strfn, strln);
+        } else {
+            signUpFail();
+        }
     //    Log.i("debug_yich", stracct+strpwd);
     //    l.lock();
     //    while(!cv.equals(true)){
@@ -126,6 +130,11 @@ public class Sign_up extends ActionBarActivity {
     //    l.unlock();
 
         //    Log.i("debug_yich", ret);
+    }
+
+    public void GoBack(View v){
+        Intent i = new Intent(this, guest_log_in.class);
+        startActivity(i);
     }
 
     public void selectId(View v){
