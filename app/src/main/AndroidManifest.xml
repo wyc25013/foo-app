@@ -56,8 +56,8 @@
             android:label="@string/title_activity_log_in_fail" >
         </activity>
         <activity
-            android:name=".wzmPage"
-            android:label="@string/title_activity_wzm_page" >
+            android:name=".DwzmPage"
+            android:label="@string/title_activity_dwzm_page" >
         </activity>
         <activity
             android:name=".PwzmPage"
