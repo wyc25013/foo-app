@@ -93,8 +93,6 @@ public class patient_log_in extends ActionBarActivity {
         startActivity(i);
     }
 
-
-
     public void logInPatient(View v) {
         EditText send_txt_acct = (EditText) findViewById(R.id.account);
         EditText send_txt_pswd = (EditText) findViewById(R.id.password);
@@ -103,7 +101,6 @@ public class patient_log_in extends ActionBarActivity {
         Log.i("debug_yich", stracct+strpwd);
         sendPostRequest(stracct, strpwd);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,10 +7,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
+
 
 public class DwzmPage extends ActionBarActivity {
 
     public void Logout(View v){
+        HttpClient httpClient = new DefaultHttpClient();
+        try {
+            httpClient.execute(new HttpGet("http://10.0.2.2:80/androidAppServer/logout.php"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Intent i = new Intent(this, dentist_log_in.class);
         startActivity(i);
     }
