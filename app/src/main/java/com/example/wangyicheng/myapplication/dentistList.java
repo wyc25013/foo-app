@@ -76,6 +76,7 @@ public class dentistList extends ActionBarActivity {
                     String bufferedStrChunk = null;
                     while((bufferedStrChunk = bufferedReader.readLine()) != null)
                         stringBuilder.append(bufferedStrChunk);
+                    Log.i("debug_yich", stringBuilder.toString());
                     return stringBuilder.toString();
                 } catch (ClientProtocolException e) {
                     System.out.println(e);
