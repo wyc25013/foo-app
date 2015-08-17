@@ -74,12 +74,12 @@ public class dentist_log_in extends ActionBarActivity {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                if(result.equals("working")){
-                    Toast.makeText(getApplicationContext(), "HTTP POST is working...", Toast.LENGTH_LONG).show();
-                    logInSucceed(acct);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Invalid POST req...", Toast.LENGTH_LONG).show();
+                if(result.equals("not working")){
+                    Toast.makeText(getApplicationContext(), "Log in failed, please try again!", Toast.LENGTH_LONG).show();
                     loginInFail();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_LONG).show();
+                    logInSucceed(result, acct);
                 }
             }
         }
@@ -96,10 +96,11 @@ public class dentist_log_in extends ActionBarActivity {
         sendPostRequest(stracct, strpwd);
     }
 
-    private void logInSucceed(String denAcct){
+    private void logInSucceed(String sid, String denAcct){
         switch (denAcct){
             case "ZhenmingWang@kangjie.com":
                 Intent i = new Intent(this, DwzmPage.class);
+                i.putExtra("sid",sid);
                 startActivity(i);
                 break;
             // other cases

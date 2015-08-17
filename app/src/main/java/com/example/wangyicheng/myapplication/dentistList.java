@@ -39,6 +39,8 @@ public class dentistList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dentist_list);
+        Bundle bundle = getIntent().getExtras();
+        final String sid = bundle.getString("sid");
 
         String[] dentists = {"Zhengming Wang", "Leyong Chen", "Xiaoyan Wu", "Jianguo Chen",
                              "Qianhong Xu", "Haiyan Gu", "Chenhua Xu", "Jingyue Liu"};
@@ -54,20 +56,23 @@ public class dentistList extends ActionBarActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String dentist = String.valueOf(parent.getItemAtPosition(position));
                         //    Toast.makeText(dentistList.this, dentist, Toast.LENGTH_LONG).show();
-                        goToPage(dentist);
+                        goToPage(dentist,sid);
                     }
                 }
         );
     }
 
-    private void goToPage(final String s){
+    private void goToPage(final String s, final String sid){
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpGet httppost = new HttpGet("http://10.0.2.2:80/androidAppServer/getDenList.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/getDenList.php");
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("sid", sid));
 
                 try {
+                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
                     InputStream inputStream = response.getEntity().getContent();
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -91,9 +96,9 @@ public class dentistList extends ActionBarActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 Log.i("debug_yich","res: "+result);
-                if(result.equals("welcome")){
+                if(result.equals(sid)){
                     Toast.makeText(getApplicationContext(), "welcome to "+s, Toast.LENGTH_LONG).show();
-                    getListSucceed(s);
+                    getListSucceed(s,sid);
                 }else{
                     Toast.makeText(getApplicationContext(), "please log in first!", Toast.LENGTH_LONG).show();
                     getListFail();
@@ -104,10 +109,11 @@ public class dentistList extends ActionBarActivity {
         httpsd.execute(s);
     }
 
-    public void getListSucceed(String s){
+    public void getListSucceed(String s, String sid){
         switch (s){
             case "Zhengming Wang":
                 Intent i = new Intent(this, PwzmPage.class);
+                i.putExtra("sid", sid);
                 startActivity(i);
                 break;
             // other cases;

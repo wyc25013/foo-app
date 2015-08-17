@@ -22,6 +22,7 @@ public class guest_log_in extends ActionBarActivity {
 
     public void AsGuest(View v){
         Intent i = new Intent(this, dentistList.class);
+        i.putExtra("sid","");
         startActivity(i);
     }
 

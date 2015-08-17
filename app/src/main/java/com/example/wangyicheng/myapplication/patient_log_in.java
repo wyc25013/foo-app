@@ -35,18 +35,17 @@ public class patient_log_in extends ActionBarActivity {
         startActivity(i);
     }
 
-    private void sendPostRequest(String acct, String pwd){
+    private void sendPostRequest(final String acct, final String pwd){
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/patientLogin.php");
-                String Acct = str[0]; String Pwd = str[1];
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("postAcct", Acct));
-                nameValuePairs.add(new BasicNameValuePair("postPwd", Pwd));
+                nameValuePairs.add(new BasicNameValuePair("postAcct", acct));
+                nameValuePairs.add(new BasicNameValuePair("postPwd", pwd));
 
-                Log.i("debug_yich", Acct + Pwd);
+                Log.i("debug_yich", acct + pwd);
                 try {
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
@@ -70,12 +69,12 @@ public class patient_log_in extends ActionBarActivity {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                if(result.equals("working")){
-                    Toast.makeText(getApplicationContext(), "HTTP POST is working...", Toast.LENGTH_LONG).show();
-                    logInSucceed();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Invalid POST req...", Toast.LENGTH_LONG).show();
+                if(result.equals("not working")){
+                    Toast.makeText(getApplicationContext(), "Log in failed! Please try again!", Toast.LENGTH_LONG).show();
                     loginInFail();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Welcome!", Toast.LENGTH_LONG).show();
+                    logInSucceed(result);
                 }
             }
         }
@@ -83,8 +82,9 @@ public class patient_log_in extends ActionBarActivity {
         httpsd.execute(acct, pwd);
     }
 
-    private void logInSucceed(){
+    private void logInSucceed(String sid){
         Intent i = new Intent(this, dentistList.class);
+        i.putExtra("sid", sid);
         startActivity(i);
     }
 

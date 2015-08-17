@@ -1,36 +1,78 @@
 package com.example.wangyicheng.myapplication;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DwzmPage extends ActionBarActivity {
 
-    public void Logout(View v){
-        HttpClient httpClient = new DefaultHttpClient();
-        try {
-            httpClient.execute(new HttpGet("http://10.0.2.2:80/androidAppServer/logout.php"));
-        } catch (IOException e) {
-            e.printStackTrace();
+    String sid = "";
+
+    private void sendPostRequest(final String sid){
+        class HttpSend extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... str) {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/logout.php");
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("sid", sid));
+
+                Log.i("debug_yich", sid);
+                try {
+                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    httpclient.execute(httppost);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+                return "logout";
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                if(result.equals("logout")) {
+                    Toast.makeText(getApplicationContext(), "You've logged out!", Toast.LENGTH_LONG).show();
+                    loggedout();
+                }
+            }
         }
+        HttpSend httpsd = new HttpSend();
+        httpsd.execute(sid);
+    }
+
+    private void loggedout(){
         Intent i = new Intent(this, dentist_log_in.class);
         startActivity(i);
     }
 
+    public void Logout(View v) {
+        sendPostRequest(sid);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getIntent().getExtras();
+        sid += bundle.getString("sid");
         setContentView(R.layout.activity_dwzm_page);
     }
 
