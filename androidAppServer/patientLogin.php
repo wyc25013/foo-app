@@ -1,4 +1,5 @@
 <?php
+//session_start();
 require 'connectdb.inc.php';
 
 $account = $_POST['postAcct'];
@@ -8,7 +9,15 @@ $query = "SELECT email, password FROM userInfo WHERE email = '$account' AND pass
 if($query_run = mysql_query($query)){
 	$query_num_rows = mysql_num_rows($query_run);
 	if($query_num_rows == 1){
-		echo "working";
+		
+	//	include 'session.inc.php';
+		
+	//	$_SESSION["id"] = 'p';
+	//	$_SESSION["acct"] = $account;
+	//	$_SESSION["pswd"] = $password;
+		session_start();
+		$sid = session_id();	
+		echo $sid;
 	}else{
 		echo "not working";
 	}
