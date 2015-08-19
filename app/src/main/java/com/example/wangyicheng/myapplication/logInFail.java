@@ -9,15 +9,23 @@ import android.view.View;
 
 
 public class logInFail extends ActionBarActivity {
+    String id = "";
 
     public void goBackToLogIn(View v){
-        Intent i = new Intent(this, patient_log_in.class);
-        startActivity(i);
+        if(id == "p") {
+            Intent i = new Intent(this, patient_log_in.class);
+            startActivity(i);
+        }else{
+            Intent i = new Intent(this, dentist_log_in.class);
+            startActivity(i);
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getIntent().getExtras();
+        id += bundle.getString("id");
         setContentView(R.layout.activity_log_in_fail);
     }
 

@@ -90,6 +90,7 @@ public class patient_log_in extends ActionBarActivity {
 
     private void loginInFail(){
         Intent i = new Intent(this, logInFail.class);
+        i.putExtra("id","p");
         startActivity(i);
     }
 
