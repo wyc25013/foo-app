@@ -97,14 +97,26 @@ public class dentist_log_in extends ActionBarActivity {
     }
 
     private void logInSucceed(String sid, String denAcct){
+        Intent i = new Intent(this, DwzmPage.class);
+        i.putExtra("sid",sid);
         switch (denAcct){
             case "ZhenmingWang@kangjie.com":
-                Intent i = new Intent(this, DwzmPage.class);
-                i.putExtra("sid",sid);
-                startActivity(i);
+                i.putExtra("name","Zhenming Wang");
+                i.putExtra("info","blabla");
+                i.putExtra("av89",true);
+                i.putExtra("av1011",true);
+                i.putExtra("av12",true);
+                break;
+            case "leyong@kangjie.com":
+                i.putExtra("name","Leyong Chen");
+                i.putExtra("info","blabla");
+                i.putExtra("av89",true);
+                i.putExtra("av1011",true);
+                i.putExtra("av12",true);
                 break;
             // other cases
         }
+        startActivity(i);
     }
 
     private void loginInFail(){

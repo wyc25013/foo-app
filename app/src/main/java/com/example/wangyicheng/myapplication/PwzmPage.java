@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -85,6 +86,16 @@ public class PwzmPage extends ActionBarActivity {
         Bundle bundle = getIntent().getExtras();
         sid += bundle.getString("sid");
         setContentView(R.layout.activity_pwzm_page);
+        TextView name = (TextView) findViewById(R.id.pname);
+        TextView info = (TextView) findViewById(R.id.pdeninfo);
+        TextView av89 = (TextView) findViewById(R.id.pav89);
+        TextView av1011 = (TextView) findViewById(R.id.pav1011);
+        TextView av12 = (TextView) findViewById(R.id.pav12);
+        name.setText(bundle.getString("name")+"'s page");
+        info.setText("the dentist's info: "+bundle.getString("info"));
+        av89.setText(bundle.get("av89").toString());
+        av1011.setText(bundle.get("av1011").toString());
+        av12.setText(bundle.get("av12").toString());
     }
 
     @Override

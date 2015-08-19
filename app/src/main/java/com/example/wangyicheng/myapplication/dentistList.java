@@ -110,14 +110,25 @@ public class dentistList extends ActionBarActivity {
     }
 
     public void getListSucceed(String s, String sid){
+        Intent i = new Intent(this, PwzmPage.class);
+        i.putExtra("sid", sid);
+        i.putExtra("name",s);
         switch (s){
             case "Zhengming Wang":
-                Intent i = new Intent(this, PwzmPage.class);
-                i.putExtra("sid", sid);
-                startActivity(i);
+                i.putExtra("info","blabla");
+                i.putExtra("av89",true);
+                i.putExtra("av1011",true);
+                i.putExtra("av12",true);
+                break;
+            case "Leyong Chen":
+                i.putExtra("info","blabla");
+                i.putExtra("av89",true);
+                i.putExtra("av1011",true);
+                i.putExtra("av12",true);
                 break;
             // other cases;
         }
+        startActivity(i);
     }
 
     public void getListFail(){

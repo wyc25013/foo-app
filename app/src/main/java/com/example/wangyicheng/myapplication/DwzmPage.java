@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -74,6 +75,16 @@ public class DwzmPage extends ActionBarActivity {
         Bundle bundle = getIntent().getExtras();
         sid += bundle.getString("sid");
         setContentView(R.layout.activity_dwzm_page);
+        TextView name = (TextView) findViewById(R.id.namepage);
+        TextView info = (TextView) findViewById(R.id.deninfo);
+        TextView av89 = (TextView) findViewById(R.id.av89);
+        TextView av1011 = (TextView) findViewById(R.id.av1011);
+        TextView av12 = (TextView) findViewById(R.id.av12);
+        name.setText(bundle.getString("name")+"'s page");
+        info.setText("the dentist's info: "+bundle.getString("info"));
+        av89.setText(bundle.get("av89").toString());
+        av1011.setText(bundle.get("av1011").toString());
+        av12.setText(bundle.get("av12").toString());
     }
 
     @Override
