@@ -23,12 +23,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -39,20 +42,24 @@ public class dentist_log_in extends ActionBarActivity {
         startActivity(i);
     }
 
-    private void sendPostRequest(final String acct, String pwd){
+    private void sendPostRequest(final String acct, final String pwd){
         class HttpSend extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... str) {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("http://10.0.2.2:80/androidAppServer/dentistLogin.php");
-                String Acct = str[0]; String Pwd = str[1];
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("postAcct", Acct));
-                nameValuePairs.add(new BasicNameValuePair("postPwd", Pwd));
+                nameValuePairs.add(new BasicNameValuePair("postAcct", acct));
+                nameValuePairs.add(new BasicNameValuePair("postPwd", pwd));
 
-                Log.i("debug_yich", Acct+Pwd);
+                Log.i("debug_yich", acct+pwd);
                 try {
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    ResponseHandler<String> responseHandler = new BasicResponseHandler();
+                    String responseBody = httpclient.execute(httppost,responseHandler);
+                    return responseBody;
+
+                    /*
                     HttpResponse response = httpclient.execute(httppost);
                     InputStream inputStream = response.getEntity().getContent();
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -62,6 +69,7 @@ public class dentist_log_in extends ActionBarActivity {
                     while((bufferedStrChunk = bufferedReader.readLine()) != null)
                         stringBuilder.append(bufferedStrChunk);
                     return stringBuilder.toString();
+                    */
                 } catch (ClientProtocolException e) {
                     System.out.println(e);
                 } catch (IOException e) {
@@ -79,7 +87,8 @@ public class dentist_log_in extends ActionBarActivity {
                     loginInFail();
                 }else{
                     Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_LONG).show();
-                    logInSucceed(result, acct);
+                    logInSucceed(result);
+                    Log.i("debug_yich",result);
                 }
             }
         }
@@ -96,19 +105,37 @@ public class dentist_log_in extends ActionBarActivity {
         sendPostRequest(stracct, strpwd);
     }
 
-    private void logInSucceed(String sid, String denAcct){
+    private void logInSucceed(String jsonRet){
+        HashMap<String, String> map = new HashMap<>();
+        try {
+            JSONObject json = new JSONObject(jsonRet);
+            map.put("sid",json.getString("sid"));
+            map.put("firstname", json.getString("firstname"));
+            map.put("lastname", json.getString("lastname"));
+            map.put("info", json.getString("info"));
+            map.put("av89", json.getString("av89"));
+            map.put("av1011", json.getString("av1011"));
+            map.put("av12", json.getString("av12"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Intent i = new Intent(this, DwzmPage.class);
-        i.putExtra("sid",sid);
-        switch (denAcct){
-            case "ZhenmingWang@kangjie.com":
-                i.putExtra("name","Zhenming Wang");
+        i.putExtra("sid", map.get("sid"));
+        String name = map.get("firstname")+" "+map.get("lastname");
+        i.putExtra("name",name);
+        i.putExtra("info",map.get("info"));
+        i.putExtra("av89",map.get("av89"));
+        i.putExtra("av1011",map.get("av1011"));
+        i.putExtra("av12",map.get("av12"));
+        /*
+        switch (name){
+            case "Zhenming Wang":
                 i.putExtra("info","blabla");
                 i.putExtra("av89",true);
                 i.putExtra("av1011",true);
                 i.putExtra("av12",true);
                 break;
-            case "leyong@kangjie.com":
-                i.putExtra("name","Leyong Chen");
+            case "Leyong Chen":
                 i.putExtra("info","blabla");
                 i.putExtra("av89",true);
                 i.putExtra("av1011",true);
@@ -116,6 +143,7 @@ public class dentist_log_in extends ActionBarActivity {
                 break;
             // other cases
         }
+        */
         startActivity(i);
     }
 

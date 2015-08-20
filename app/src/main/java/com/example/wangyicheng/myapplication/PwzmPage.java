@@ -93,9 +93,9 @@ public class PwzmPage extends ActionBarActivity {
         TextView av12 = (TextView) findViewById(R.id.pav12);
         name.setText(bundle.getString("name")+"'s page");
         info.setText("the dentist's info: "+bundle.getString("info"));
-        av89.setText(bundle.get("av89").toString());
-        av1011.setText(bundle.get("av1011").toString());
-        av12.setText(bundle.get("av12").toString());
+        av89.setText(bundle.getString("av89"));
+        av1011.setText(bundle.getString("av1011"));
+        av12.setText(bundle.getString("av12"));
     }
 
     @Override
