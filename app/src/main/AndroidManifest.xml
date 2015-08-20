@@ -63,6 +63,14 @@
             android:name=".PwzmPage"
             android:label="@string/title_activity_pwzm_page" >
         </activity>
+        <activity
+            android:name=".pReserve"
+            android:label="@string/title_activity_p_reserve" >
+        </activity>
+        <activity
+            android:name=".dChangeSchedule"
+            android:label="@string/title_activity_d_change_schedule" >
+        </activity>
     </application>
 
 </manifest>

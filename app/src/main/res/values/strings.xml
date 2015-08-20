@@ -22,4 +22,6 @@
     <string name="title_activity_log_in_fail">logInFail</string>
     <string name="title_activity_dwzm_page">DwzmPage</string>
     <string name="title_activity_pwzm_page">PwzmPage</string>
+    <string name="title_activity_p_reserve">pReserve</string>
+    <string name="title_activity_d_change_schedule">dChangeSchedule</string>
 </resources>

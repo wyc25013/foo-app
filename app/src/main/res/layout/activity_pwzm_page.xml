@@ -64,7 +64,8 @@
         android:id="@+id/button17"
         android:layout_marginTop="28dp"
         android:layout_below="@+id/tableLayout2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="reserve" />
 
     <Button
         android:layout_width="wrap_content"
@@ -73,7 +74,8 @@
         android:id="@+id/button18"
         android:layout_below="@+id/button17"
         android:layout_toLeftOf="@+id/button13"
-        android:layout_toStartOf="@+id/button13" />
+        android:layout_toStartOf="@+id/button13"
+        android:onClick="refresh" />
 
     <TableLayout
         android:layout_width="200dp"
