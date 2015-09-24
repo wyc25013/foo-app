@@ -2,5 +2,9 @@
 simple login/out &amp; reservation system
 ```cpp
 #include <iostream>
-std::cout << "Hello world!" << endl;
+using namespace std;
+int main(){
+  cout << "Hello world!" << endl;
+  return 0;
+}
 ```
